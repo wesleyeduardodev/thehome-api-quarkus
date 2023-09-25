@@ -5,6 +5,8 @@ import com.thehome.api.model.Client;
 import com.thehome.api.repository.ClientRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class ClientService {
         return clientRepository.save(toClientEntity(clientRequestDTO));
     }
 
+    @Transactional
     public void deleteClient(Long id) {
         Client.deleteById(id);
     }
