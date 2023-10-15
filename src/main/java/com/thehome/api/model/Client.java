@@ -2,6 +2,7 @@ package com.thehome.api.model;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,4 +35,8 @@ public class Client extends PanacheEntityBase {
 
     @Column(name = "address")
     private String address;
+
+    @Transient
+    @OneToMany(mappedBy = "client")
+    private List<Project> projects;
 }
