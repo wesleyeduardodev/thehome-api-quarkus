@@ -1,8 +1,10 @@
 # THE HOME API - Controle de Orçamentos
 
 # Comandos básicos para executar o projeto
-- mvn clean install
-- ./mvnw compile quarkus:dev
+- Compilação: mvn clean install
+- Subir aplicação: ./mvnw compile quarkus:dev
+- Dev UI:  http://localhost:8080/q/dev-ui/extensions
+- Swagger: http://localhost:8080/q/swagger-ui/
 
 # Tecnologias necessárias para execução do projeto
 
