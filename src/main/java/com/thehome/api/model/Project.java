@@ -23,6 +23,10 @@ public class Project extends PanacheEntityBase {
     @JoinColumn(name = "id_client", referencedColumnName = "id", nullable = false)
     private Client client;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", referencedColumnName = "id")
+    private Address address;
+
     @Enumerated
     @Column(name = "status", nullable = false)
     private ProjectStatus status;

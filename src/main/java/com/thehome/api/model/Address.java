@@ -17,6 +17,9 @@ public class Address extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_address_seq")
     private Long id;
 
+    @OneToOne(mappedBy = "address")
+    private Project project;
+
     @Column(name = "uf", nullable = false)
     private String uf;
 

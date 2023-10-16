@@ -37,11 +37,6 @@ public class Client extends PanacheEntityBase {
     @Column(name = "date_register")
     private LocalDateTime dateRegister;
 
-    //TODO Do jeito que esta ta errado. Se eu remover um cliente tem que remover o endereco dele tambem
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_address", referencedColumnName = "id")
-    private Address address;
-
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Project> projects;
 }
