@@ -6,7 +6,6 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "payment")
 public class Payment extends PanacheEntityBase {
+
     @Id
     @SequenceGenerator(name = "id_payment_seq", sequenceName = "pk_id_payment", allocationSize = 0)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_payment_seq")

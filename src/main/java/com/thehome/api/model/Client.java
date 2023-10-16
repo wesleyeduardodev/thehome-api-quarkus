@@ -2,6 +2,7 @@ package com.thehome.api.model;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -33,8 +34,13 @@ public class Client extends PanacheEntityBase {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "date_register")
+    private LocalDateTime dateRegister;
+
+    //TODO Do jeito que esta ta errado. Se eu remover um cliente tem que remover o endereco dele tambem
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", referencedColumnName = "id")
+    private Address address;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Project> projects;
