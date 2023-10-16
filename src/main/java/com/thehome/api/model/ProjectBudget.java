@@ -2,8 +2,8 @@ package com.thehome.api.model;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,18 +15,20 @@ import java.math.BigDecimal;
 public class ProjectBudget extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_project_budget_seq", sequenceName = "pk_id_project_budget", allocationSize = 0, initialValue = 1)
+    @SequenceGenerator(name = "id_project_budget_seq", sequenceName = "pk_id_project_budget", allocationSize = 0)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_project_budget_seq")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_project", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "id_project", referencedColumnName = "id", nullable = false)
     private Project project;
 
     @Column(name = "value", nullable = false)
     private BigDecimal value;
 
-    @Enumerated
-    @Column(name = "payment_type")
-    private PaymentType paymentType;
+    @Column(name = "number_installments")
+    private Integer numberInstallments;
+
+    @OneToMany(mappedBy = "projectBudget", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Payment> payments;
 }

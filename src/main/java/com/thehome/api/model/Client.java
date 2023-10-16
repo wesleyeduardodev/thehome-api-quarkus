@@ -14,7 +14,7 @@ import java.util.List;
 public class Client extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_client_seq", sequenceName = "pk_id_client", allocationSize = 0, initialValue = 1)
+    @SequenceGenerator(name = "id_client_seq", sequenceName = "pk_id_client", allocationSize = 0)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_client_seq")
     private Long id;
 
@@ -36,7 +36,6 @@ public class Client extends PanacheEntityBase {
     @Column(name = "address")
     private String address;
 
-    @Transient
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Project> projects;
 }
