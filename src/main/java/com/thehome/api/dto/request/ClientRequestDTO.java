@@ -59,5 +59,5 @@ public class ClientRequestDTO {
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String address;
+    private Long idAddress;
 }

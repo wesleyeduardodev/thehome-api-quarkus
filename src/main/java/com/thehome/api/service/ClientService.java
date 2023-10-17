@@ -5,6 +5,8 @@ import com.thehome.api.model.Client;
 import com.thehome.api.repository.ClientRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +21,12 @@ public class ClientService {
     }
 
     public Client createClient(ClientRequestDTO clientRequestDTO) {
-        return clientRepository.save(toClientEntity(clientRequestDTO));
+        Client client = toClientEntity(clientRequestDTO);
+        client.setDateRegister(LocalDateTime.now());
+        return clientRepository.save(client);
     }
 
+    @Transactional
     public void deleteClient(Long id) {
         Client.deleteById(id);
     }
@@ -32,9 +37,7 @@ public class ClientService {
         client.setCpf(clientRequestDTO.getCpf());
         client.setCnpj(clientRequestDTO.getCnpj());
         client.setTelephone(clientRequestDTO.getTelephone());
-        client.setAddress(clientRequestDTO.getAddress());
         client.setEmail(clientRequestDTO.getEmail());
-        client.setAddress(clientRequestDTO.getAddress());
         clientRepository.save(client);
     }
 
@@ -52,7 +55,6 @@ public class ClientService {
                 .cnpj(client.getCnpj())
                 .telephone(client.getTelephone())
                 .email(client.getEmail())
-                .address(client.getAddress())
                 .build();
     }
 
@@ -64,7 +66,6 @@ public class ClientService {
                 .cnpj(clientRequestDTO.getCnpj())
                 .telephone(clientRequestDTO.getTelephone())
                 .email(clientRequestDTO.getEmail())
-                .address(clientRequestDTO.getAddress())
                 .build();
     }
 }

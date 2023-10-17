@@ -58,11 +58,4 @@ public class ClientResponseDTO {
             type = SchemaType.STRING
     )
     private String email;
-
-    @Schema(
-            description = "Client address",
-            implementation = String.class,
-            type = SchemaType.STRING
-    )
-    private String address;
 }

@@ -2,6 +2,8 @@ package com.thehome.api.model;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,8 +15,8 @@ import lombok.*;
 public class Client extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_client_seq", sequenceName = "pk_id_client", allocationSize = 0, initialValue = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_client_seq")
+    @SequenceGenerator(name = "client_id_seq", sequenceName = "pk_client_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id_seq")
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -32,6 +34,9 @@ public class Client extends PanacheEntityBase {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "date_register")
+    private LocalDateTime dateRegister;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Project> projects;
 }
