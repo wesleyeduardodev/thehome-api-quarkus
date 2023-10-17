@@ -1,12 +1,12 @@
 package com.thehome.api.service;
 import com.thehome.api.dto.request.ClientRequestDTO;
 import com.thehome.api.dto.response.ClientResponseDTO;
-import com.thehome.api.model.Address;
 import com.thehome.api.model.Client;
 import com.thehome.api.repository.ClientRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,9 @@ public class ClientService {
     }
 
     public Client createClient(ClientRequestDTO clientRequestDTO) {
-        return clientRepository.save(toClientEntity(clientRequestDTO));
+        Client client = toClientEntity(clientRequestDTO);
+        client.setDateRegister(LocalDateTime.now());
+        return clientRepository.save(client);
     }
 
     @Transactional
@@ -35,7 +37,6 @@ public class ClientService {
         client.setCpf(clientRequestDTO.getCpf());
         client.setCnpj(clientRequestDTO.getCnpj());
         client.setTelephone(clientRequestDTO.getTelephone());
-        //client.setAddress(Address.builder().id(clientRequestDTO.getIdAddress()).build());
         client.setEmail(clientRequestDTO.getEmail());
         clientRepository.save(client);
     }
