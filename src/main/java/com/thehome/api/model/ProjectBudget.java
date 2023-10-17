@@ -15,12 +15,12 @@ import java.util.List;
 public class ProjectBudget extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_project_budget_seq", sequenceName = "pk_id_project_budget", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_project_budget_seq")
+    @SequenceGenerator(name = "project_budget_id_seq", sequenceName = "pk_project_budget_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_budget_id_seq")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_project", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
     private Project project;
 
     @Column(name = "value", nullable = false)

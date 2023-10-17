@@ -14,8 +14,8 @@ import java.util.List;
 public class Task extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_task_seq", sequenceName = "pk_id_task", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_task_seq")
+    @SequenceGenerator(name = "task_id_seq", sequenceName = "pk_task_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_id_seq")
     private Long id;
 
     @Column(name = "name", nullable = false)

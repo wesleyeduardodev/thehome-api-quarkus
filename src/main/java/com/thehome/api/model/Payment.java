@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 public class Payment extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_payment_seq", sequenceName = "pk_id_payment", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_payment_seq")
+    @SequenceGenerator(name = "payment_id_seq", sequenceName = "pk_payment_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "payment_id_seq")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_project_budget", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "project_budget_id", referencedColumnName = "id", nullable = false)
     private ProjectBudget projectBudget;
 
     @Column(name = "value", nullable = false)

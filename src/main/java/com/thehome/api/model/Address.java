@@ -13,8 +13,8 @@ import lombok.*;
 public class Address extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_address_seq", sequenceName = "pk_id_address", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_address_seq")
+    @SequenceGenerator(name = "address_id_seq", sequenceName = "pk_address_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_id_seq")
     private Long id;
 
     @OneToOne(mappedBy = "address")

@@ -15,8 +15,8 @@ import java.util.List;
 public class Client extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_client_seq", sequenceName = "pk_id_client", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_client_seq")
+    @SequenceGenerator(name = "client_id_seq", sequenceName = "pk_client_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id_seq")
     private Long id;
 
     @Column(name = "name", nullable = false)

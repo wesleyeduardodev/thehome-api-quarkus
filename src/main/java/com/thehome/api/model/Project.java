@@ -15,16 +15,16 @@ import java.util.List;
 public class Project extends PanacheEntityBase {
 
     @Id
-    @SequenceGenerator(name = "id_project_seq", sequenceName = "pk_id_project", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_project_seq")
+    @SequenceGenerator(name = "project_id_seq", sequenceName = "pk_project_id", allocationSize = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_id_seq")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_client", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private Client client;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_address", referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @Enumerated
