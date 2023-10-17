@@ -16,7 +16,7 @@ public class ClientResource implements ClientResourceAPI {
 
     @Override
     public Response findAllClients() {
-        return Response.ok(clientService.toClientsResponseDTO(Client.listAll())).build();
+        return Response.ok(clientService.toClientsResponseDTO(Client.list("order by id"))).build();
     }
 
     @Override
