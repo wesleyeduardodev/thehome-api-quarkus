@@ -36,7 +36,4 @@ public class Client extends PanacheEntityBase {
 
     @Column(name = "date_register")
     private LocalDateTime dateRegister;
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Project> projects;
 }
