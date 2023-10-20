@@ -54,10 +54,10 @@ public class ClientRequestDTO {
     )
     private String email;
 
-    @Schema(
+/*    @Schema(
             description = "Client address",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private Long idAddress;
+    private Long idAddress;*/
 }
