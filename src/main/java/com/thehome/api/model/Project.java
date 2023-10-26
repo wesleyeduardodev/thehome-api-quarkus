@@ -3,6 +3,7 @@ import com.thehome.api.model.enums.ProjectStatus;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -33,6 +34,9 @@ public class Project extends PanacheEntityBase {
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProjectBudget> projectBudgets;
+
+    @Column(name = "date_register")
+    private LocalDateTime dateRegister;
 
     @Transient
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

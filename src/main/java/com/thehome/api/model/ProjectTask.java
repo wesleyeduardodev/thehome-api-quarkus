@@ -1,8 +1,8 @@
 package com.thehome.api.model;
+import com.thehome.api.model.enums.ProjectStatus;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
-
 
 @Getter
 @Setter
@@ -21,6 +21,10 @@ public class ProjectTask extends PanacheEntityBase {
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "id", nullable = false)
     private Project project;
+
+    @Enumerated
+    @Column(name = "status", nullable = false)
+    private ProjectStatus status;
 
     @ManyToOne
     @JoinColumn(name = "task_id", referencedColumnName = "id", nullable = false)

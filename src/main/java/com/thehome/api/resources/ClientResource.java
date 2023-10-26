@@ -15,16 +15,16 @@ public class ClientResource implements ClientResourceAPI {
     ClientService clientService;
 
     @Override
-    public Response findAllClients() {
-        return Response.ok(clientService.toClientsResponseDTO(Client.list("order by id"))).build();
+    public Response findAll() {
+        return Response.ok(clientService.toResponsesFromEntities(Client.list("order by id"))).build();
     }
 
     @Override
-    public Response findClientById(Long id) {
+    public Response findById(Long id) {
         Optional<Client> client = Client.findByIdOptional(id);
         Response response;
         if (client.isPresent()) {
-            response = Response.ok(clientService.toClientResponseDTO(client.get())).build();
+            response = Response.ok(clientService.toResponseFromEntity(client.get())).build();
         } else {
             response = ResponseMapperUtils.notFound();
         }
@@ -32,18 +32,18 @@ public class ClientResource implements ClientResourceAPI {
     }
 
     @Override
-    public Response createClient(ClientRequestDTO clientRequestDTO) {
-        Client client = clientService.createClient(clientRequestDTO);
-        ClientResponseDTO clientResponseDTO = clientService.toClientResponseDTO(client);
+    public Response create(ClientRequestDTO requestDTO) {
+        Client client = clientService.createEntityFromRequest(requestDTO);
+        ClientResponseDTO clientResponseDTO = clientService.toResponseFromEntity(client);
         return Response.status(RestResponse.Status.CREATED).entity(clientResponseDTO).build();
     }
 
     @Override
-    public Response updateClient(Long id, ClientRequestDTO clientRequestDTO) {
+    public Response update(Long id, ClientRequestDTO requestDTO) {
         Optional<Client> client = Client.findByIdOptional(id);
         Response response;
         if (client.isPresent()) {
-            clientService.updateClient(id, clientRequestDTO);
+            clientService.updateEntityFromRequest(id, requestDTO);
             response = Response.ok().build();
         } else {
             response = ResponseMapperUtils.badRequest("01", "Client not found");
@@ -52,11 +52,11 @@ public class ClientResource implements ClientResourceAPI {
     }
 
     @Override
-    public Response deleteClient(Long id) {
+    public Response delete(Long id) {
         Optional<Client> client = Client.findByIdOptional(id);
         Response response;
         if (client.isPresent()) {
-            clientService.deleteClient(client.get().getId());
+            clientService.deleteById(client.get().getId());
             response = ResponseMapperUtils.noContent();
         } else {
             response = ResponseMapperUtils.notFound();
