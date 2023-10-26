@@ -10,7 +10,7 @@
 
 - Java - Versão 11. Disponível em: https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html
 - Maven - Versão 3.9.4. Disponível em: https://dlcdn.apache.org/maven/maven-3/3.9.4/source/apache-maven-3.9.4-src.zip
-- Se necessário, A SDK do java e o Maven usados para execução da aplicação estão disponíveis no link: https://drive.google.com/drive/folders/1YlBRBejkEQ1FW5CJEUrov1tkdmFIC4_p?usp=sharing
+- Se necessário, A JDK do java e o Maven usados para execução da aplicação estão disponíveis no link: https://drive.google.com/drive/folders/1YlBRBejkEQ1FW5CJEUrov1tkdmFIC4_p?usp=sharing
 
 # Passos para executar o projeto utilizando linhas de comandos (Ambiente Windows)
 
@@ -67,21 +67,59 @@
 - Link do Swagger http://localhost:8080/q/swagger-ui/
 - ![img_1.png](src/main/resources/readme/img_1-11.png) 
 
-# Passos para executar os testes de integração
+# Deploy da aplicação no ambiente Heroku
+- Para deploy é preciso configurar alguns arquivo e seu conteúdo no projeto
+- Na raiz do projeto criar o arquivo Procfile e inserir o conteúdo: web: java $JAVA_OPTS -jar target/quarkus-app/quarkus-run.jar
+- ![img.png](src/main/resources/readme/img556.png)
+- Na raiz do projeto criar o arquivo system.properties e inserir o conteúdo: java.runtime.version=11
+- ![img_1.png](src/main/resources/readme/img_98651.png)
+- No arquivo application.properties presente no diretório  src/main/resources/application.properties inserir o conteúdo: quarkus.http.port=${PORT:8080}
+- ![img.png](src/main/resources/readme/img_992.png)
+- Na parte de Deploy selecione a Opção de Conectar ao GitHub
+- ![img.png](src/main/resources/readme/img851.png)
+- Mais abaixo clique na opção Deploy Branch selecionando a branch master ou main
+- ![img_1.png](src/main/resources/readme/img852.png)
+- Aguarde o build. Se ocorrer erros o buil irá falhar
+- Em caso de Sucesso ficará da seguinte forma:
+- ![img_2.png](src/main/resources/readme/img853.png)
+- Clique em View e a aplicação será exibida
+- ![img_3.png](src/main/resources/readme/img854.png)
 
-- Para testar usando o Dashboard do Quarkus, inicialize a aplicação conforme já detalhado.
-- Acessando o link: http://localhost:8080
-- ![img_5.png](src/main/resources/readme/img_5-20.png)
-- Clique em "VISIT THE DEV UI"
-- Selecione a aba "Continuos Testing" e clique em Start
-- ![img_7.png](src/main/resources/readme/img_7-22.png)
-- O resultado dos testes é apresentado conforme imagem
-- ![img.png](src/main/resources/readme/img-2090.png)
-- Os testes presentes na classe AwardsRangeResourceTest testam se as rotas do AwardsRangeResourceAPI retornam requisição realizada com sucesso (status 200) ao acessar seus endpoints. Além disso também realizam testes comparando se os resultados das faixas de prêmios presentes no arquivo CSV importado ao iniciar a aplicaçao são iguais ao mocks que foram criados na classe para realizar essa comparação. Reforço que **alterações** no arquivo CSV tem grandes chances de provocar falhas nos testes dessa classe. Sabendo disso em seguinte irei explicar os testes na classes de AwardsRangeServiceTest, que possibilitam uma flexibilidade maior de testes.
-- Os testes presentes na classe AwardsRangeServiceTest fazem um mock de um rank de faixa de prêmios e compara o resultado5 com outro mock. Dessa forma podemos montar qualquer cenário de teste.
-- Para executar o teste via IntelliJ IDEA, entre na classes de teste e clique no botão conforme imagem de exemplo:
-![img_3.png](src/main/resources/readme/img_3-2093.png)
-- Para executar os testes via comando, abra o terminal do gitBash nas raiz do projeto execute o comando: **mvn clean install -DskipUnitTests**
-- O resultado pode ser verificado conforma imagem
-![img_2.png](src/main/resources/readme/img_2-2092.png)
-- Os testes presentes no pacote security verificam se determinados endpoints estão acessíveis ou não dependendo da configuração de autenticação repassada no teste da requisição.
+# Criar banco local com o Docker usando Windows
+
+- Intalar o Docker: https://docs.docker.com/desktop/install/windows-install/
+- Usar o cmd do Windows para executar os comandos
+- Verificar se a instação está ok: docker info
+- Baixar Postgres 15: docker pull postgres:15
+- Verificar imagem baixada: docker images
+- Criar Container para o banco: docker run -d --name postgres15 -p 5432:5432 -e POSTGRES_PASSWORD=root postgres:15
+- Verificar Container: docker ps
+- Entrar no Container criado: docker exec -it postgres15 bash
+- Conectar ao banco: psql -h localhost -U postgres
+- Criar banco do projeto: CREATE DATABASE thehome;
+
+# Configurar banco de dados Postgres Heroku
+- Na aba Resource do app já criado no Heroku, pesquise por "Heroku Postgres"
+- ![img_1.png](src/main/resources/readme/img-6521.png)
+- Adicione o Aplicativo
+- ![img_2.png](src/main/resources/readme/img-6522.png)
+- Entre no aplicativo Datastorages criado
+- ![img_3.png](src/main/resources/readme/img-6523.png)
+- Na aba Settings, clique em "View Credentials"
+- ![img_4.png](src/main/resources/readme/img-6524.png)
+- Será exibido os dados de acesso ao banco remoto.
+- ![img_5.png](src/main/resources/readme/img-6525.png)
+- Agora é preciso configurar as variáveis para a aplicação conectar ao banco
+- Na aba Settings do Aplicativo, clicar em "Reveal Config Vars"
+- ![img.png](src/main/resources/readme/img-6520.png)
+- Crie as variáveis(DATABASE_HOST,DATABASE_NAME,DATABASE_PASSWD,DATABASE_PORT,DATABASE_USER) e insira seus dados conforme imagem
+- A variável DATABASE_URL já vem configurado por padrão e não precisa ser alterada
+- ![img_6.png](src/main/resources/readme/img-6526.png)
+- Lembrando que o nome dessas varíavel pode ser qualquer nome desde que esteja de acordo com o definido no arquivo application.properties presente no diretório  src/main/resources/application.properties
+- ![img.png](src/main/resources/readme/img221.png)
+
+# Conectar ao banco usando DataGrip
+- ![img_1.png](src/main/resources/readme/img222.png)
+
+# Conectar ao banco usando DBeaver
+- ![img_2.png](src/main/resources/readme/img223.png)
