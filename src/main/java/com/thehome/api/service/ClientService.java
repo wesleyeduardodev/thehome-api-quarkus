@@ -5,33 +5,35 @@ import com.thehome.api.model.Client;
 import com.thehome.api.repository.ClientRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class ClientService {
+public class ClientService implements DefaultCRUD<Client, ClientRequestDTO, ClientResponseDTO> {
 
     @Inject
     ClientRepository clientRepository;
 
-    public Client createClient(Client client) {
+    @Override
+    public Client createFromEntity(Client client) {
         return clientRepository.save(client);
     }
 
-    public Client createClient(ClientRequestDTO clientRequestDTO) {
-        Client client = toClientEntity(clientRequestDTO);
+    @Override
+    public Client createEntityFromRequest(ClientRequestDTO clientRequestDTO) {
+        Client client = toEntityFromRequest(clientRequestDTO);
         client.setDateRegister(LocalDateTime.now());
         return clientRepository.save(client);
     }
 
-    @Transactional
-    public void deleteClient(Long id) {
-        Client.deleteById(id);
+    @Override
+    public void deleteById(Long id) {
+        clientRepository.deleteById(id);
     }
 
-    public void updateClient(Long id, ClientRequestDTO clientRequestDTO) {
+    @Override
+    public void updateEntityFromRequest(Long id, ClientRequestDTO clientRequestDTO) {
         Client client = Client.findById(id);
         client.setName(clientRequestDTO.getName());
         client.setCpf(clientRequestDTO.getCpf());
@@ -41,31 +43,34 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public List<ClientResponseDTO> toClientsResponseDTO(List<Client> clients) {
+    @Override
+    public List<ClientResponseDTO> toResponsesFromEntities(List<Client> clients) {
         List<ClientResponseDTO> clientResponse = new ArrayList<>();
-        clients.forEach(client -> clientResponse.add(toClientResponseDTO(client)));
+        clients.forEach(client -> clientResponse.add(toResponseFromEntity(client)));
         return clientResponse;
     }
 
-    public ClientResponseDTO toClientResponseDTO(Client client) {
+    @Override
+    public ClientResponseDTO toResponseFromEntity(Client entity) {
         return ClientResponseDTO.builder()
-                .id(client.getId())
-                .name(client.getName())
-                .cpf(client.getCpf())
-                .cnpj(client.getCnpj())
-                .telephone(client.getTelephone())
-                .email(client.getEmail())
+                .id(entity.getId())
+                .name(entity.getName())
+                .cpf(entity.getCpf())
+                .cnpj(entity.getCnpj())
+                .telephone(entity.getTelephone())
+                .email(entity.getEmail())
                 .build();
     }
 
-    public Client toClientEntity(ClientRequestDTO clientRequestDTO) {
+    @Override
+    public Client toEntityFromRequest(ClientRequestDTO request) {
         return Client
                 .builder()
-                .name(clientRequestDTO.getName())
-                .cpf(clientRequestDTO.getCpf())
-                .cnpj(clientRequestDTO.getCnpj())
-                .telephone(clientRequestDTO.getTelephone())
-                .email(clientRequestDTO.getEmail())
+                .name(request.getName())
+                .cpf(request.getCpf())
+                .cnpj(request.getCnpj())
+                .telephone(request.getTelephone())
+                .email(request.getEmail())
                 .build();
     }
 }

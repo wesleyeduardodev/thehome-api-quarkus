@@ -1,5 +1,5 @@
 package com.thehome.api.resources;
-import com.thehome.api.dto.request.ClientRequestDTO;
+import com.thehome.api.dto.request.TaskRequestDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -11,16 +11,16 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("/v1/clients")
+@Path("/v1/tasks")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@Tag(name = "Client Resources", description = "Route used to manipulate client data.")
-public interface ClientResourceAPI {
+@Tag(name = "Task Resources", description = "Route used to manipulate task data.")
+public interface TaskResourceAPI {
 
     @Operation(
-            description = "Return all clients.",
-            operationId = "clientResourceAPI.findAll",
-            summary = "Return all clients."
+            description = "Return all tasks.",
+            operationId = "taskResourceAPI.findAll",
+            summary = "Return all tasks."
     )
     @APIResponse(
             name = "OK",
@@ -28,10 +28,10 @@ public interface ClientResourceAPI {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(
-                            ref = "ClientResponseDTO"
+                            ref = "TaskResponseDTO"
                     )
             ),
-            description = "Request executed successfully. Successfully obtained clients."
+            description = "Request executed successfully. Successfully obtained tasks."
     )
     @APIResponse(responseCode = "400", ref = "illegalRequest")
     @APIResponse(responseCode = "401", ref = "unauthorized")
@@ -42,9 +42,9 @@ public interface ClientResourceAPI {
     Response findAll();
 
     @Operation(
-            description = "Return client by Id.",
-            operationId = "clientResourceAPI.findById",
-            summary = "Return client by Id."
+            description = "Return task by Id.",
+            operationId = "taskResourceAPI.findById",
+            summary = "Return task by Id."
     )
     @APIResponse(
             name = "OK",
@@ -52,10 +52,10 @@ public interface ClientResourceAPI {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(
-                            ref = "ClientResponseDTO"
+                            ref = "TaskResponseDTO"
                     )
             ),
-            description = "Request executed successfully. Client successfully obtained."
+            description = "Request executed successfully. Task successfully obtained."
     )
     @Path("/{id}")
     @APIResponse(responseCode = "400", ref = "illegalRequest")
@@ -67,9 +67,9 @@ public interface ClientResourceAPI {
     Response findById(@PathParam("id") Long id);
 
     @Operation(
-            description = "Create client",
-            operationId = "clientResourceAPI.create",
-            summary = "Create client"
+            description = "Create task",
+            operationId = "taskResourceAPI.create",
+            summary = "Create task"
     )
     @APIResponse(
             name = "OK",
@@ -77,44 +77,44 @@ public interface ClientResourceAPI {
             content = @Content(
                     mediaType = "application/json",
                     schema = @Schema(
-                            ref = "ClientResponseDTO"
+                            ref = "TaskResponseDTO"
                     )
             ),
-            description = "Request executed successfully. Created client."
+            description = "Request executed successfully. Created task."
     )
     @POST
     @APIResponse(responseCode = "400", ref = "illegalRequest")
     @APIResponse(responseCode = "401", ref = "unauthorized")
     @APIResponse(responseCode = "403", ref = "forbiden")
     @APIResponse(responseCode = "500", ref = "internalError")
-    Response create(@Valid ClientRequestDTO requestDTO);
+    Response create(@Valid TaskRequestDTO request);
 
     @PUT
     @Path("/{id}")
     @Transactional
     @Operation(
-            description = "Update client.",
-            operationId = "clientResourceAPI.update",
-            summary = "Update client."
+            description = "Update task.",
+            operationId = "taskResourceAPI.update",
+            summary = "Update task."
     )
     @APIResponse(
             name = "OK",
             responseCode = "200",
-            description = "Request executed successfully. Updated client."
+            description = "Request executed successfully. Updated task."
     )
     @APIResponse(responseCode = "400", ref = "illegalRequest")
     @APIResponse(responseCode = "401", ref = "unauthorized")
     @APIResponse(responseCode = "403", ref = "forbiden")
     @APIResponse(responseCode = "404", ref = "notFound")
     @APIResponse(responseCode = "500", ref = "internalError")
-    Response update(@PathParam("id") Long id, @Valid ClientRequestDTO requestDTO);
+    Response update(@PathParam("id") Long id, @Valid TaskRequestDTO requestDTO);
 
     @DELETE
     @Path("/{id}")
     @Operation(
-            description = "Delete client.",
-            operationId = "clientResourceAPI.delete",
-            summary = "Delete client."
+            description = "Delete task.",
+            operationId = "taskResourceAPI.delete",
+            summary = "Delete task."
     )
     @APIResponse(
             name = "OK",
