@@ -4,11 +4,13 @@ import com.thehome.api.dto.response.ClientResponseDTO;
 import com.thehome.api.model.Client;
 import com.thehome.api.service.ClientService;
 import com.thehome.api.utils.ResponseMapperUtils;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.RestResponse;
 import java.util.Optional;
 
+@RolesAllowed("admin")
 public class ClientResource implements ClientResourceAPI {
 
     @Inject
