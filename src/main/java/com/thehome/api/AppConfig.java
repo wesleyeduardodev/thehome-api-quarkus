@@ -72,14 +72,14 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
                                 type = SchemaType.OBJECT,
                                 implementation = ApiErrorDTO.class
                         )
-                }/*,
+                },
                 securitySchemes = {
                         @SecurityScheme(
                                 securitySchemeName = "basicAuth",
                                 type = SecuritySchemeType.HTTP,
                                 scheme = "basic"
                         )
-                }*/
+                }
         )
 )
 @ApplicationPath("/api/")
