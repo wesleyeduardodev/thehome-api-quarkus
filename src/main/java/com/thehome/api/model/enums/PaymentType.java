@@ -3,6 +3,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.util.Arrays;
 
+@Getter
 @AllArgsConstructor
 public enum PaymentType {
 
@@ -12,10 +13,8 @@ public enum PaymentType {
     MONEY(3, "Money"),
     OTHER(4, "Other");
 
-    @Getter
     private final int code;
 
-    @Getter
     private final String description;
 
     public static PaymentType valueOfCodigo(Integer code) {

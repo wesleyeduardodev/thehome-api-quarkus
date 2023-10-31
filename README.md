@@ -2,10 +2,11 @@
 
 # **Projeto em Desenvolvimento**
 
-# LINKS DE PRODUÇÃO
+# LINKS GERAIS
 - Aplicação Quarkus: https://thehome-3a98079ba9ed.herokuapp.com/
 - Swagger: https://thehome-3a98079ba9ed.herokuapp.com/q/swagger-ui/
 - Aplicação Angular: https://thehome-web.vercel.app/home
+- Projeto Frontend (Angular): https://github.com/wesleyeduardodev/thehome_web
 
 # Comandos básicos para executar o projeto
 - Compilação: mvn clean install

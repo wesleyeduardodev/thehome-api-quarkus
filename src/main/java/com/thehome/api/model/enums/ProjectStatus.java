@@ -3,6 +3,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.util.Arrays;
 
+@Getter
 @AllArgsConstructor
 public enum ProjectStatus {
 
@@ -13,10 +14,8 @@ public enum ProjectStatus {
     EXECUTION(4, "Execution"),
     FINISHED(5, "Finished");
 
-    @Getter
     private final int code;
 
-    @Getter
     private final String description;
 
     public static ProjectStatus valueOfCodigo(Integer code) {

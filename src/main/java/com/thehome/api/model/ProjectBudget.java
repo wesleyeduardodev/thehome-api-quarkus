@@ -29,6 +29,7 @@ public class ProjectBudget extends PanacheEntityBase {
     @Column(name = "number_installments")
     private Integer numberInstallments;
 
+    @Transient
     @OneToMany(mappedBy = "projectBudget", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Payment> payments;
 }

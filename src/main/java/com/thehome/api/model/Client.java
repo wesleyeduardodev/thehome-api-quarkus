@@ -40,6 +40,7 @@ public class Client extends PanacheEntityBase {
     @Column(name = "birthday")
     private LocalDateTime birthday;
 
+    @Transient
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Project> projects;
 }

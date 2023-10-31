@@ -21,6 +21,7 @@ public class Task extends PanacheEntityBase {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Transient
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProjectTask> projectTasks;
 }
