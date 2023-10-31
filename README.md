@@ -1,4 +1,9 @@
-# THE HOME API - Controle de Orçamentos
+# THE HOME API - Controle de Orçamentos - **EM DESENVOLVIMENTO**
+
+# LINKS DE PRODUÇÃO
+- Aplicação Quarkus: https://thehome-3a98079ba9ed.herokuapp.com/
+- Swagger: https://thehome-3a98079ba9ed.herokuapp.com/q/swagger-ui/
+- Aplicação Angular: https://thehome-web.vercel.app/home
 
 # Comandos básicos para executar o projeto
 - Compilação: mvn clean install
