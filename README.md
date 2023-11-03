@@ -16,11 +16,10 @@
 
 # Tecnologias necessárias para execução do projeto
 
-- Java - Versão 11. Disponível em: https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html
+- Java - Versão 17. Disponível em: https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html
 - Maven - Versão 3.9.4. Disponível em: https://dlcdn.apache.org/maven/maven-3/3.9.4/source/apache-maven-3.9.4-src.zip
-- Se necessário, A JDK do java e o Maven usados para execução da aplicação estão disponíveis no link: https://drive.google.com/drive/folders/1YlBRBejkEQ1FW5CJEUrov1tkdmFIC4_p?usp=sharing
 
-# Passos para executar o projeto utilizando linhas de comandos (Ambiente Windows)
+# Passos para executar o projeto em ambiente local utilizando linhas de comandos (Ambiente Windows)
 
 - O primeiro passso aqui é ter o Java e o Maven configurados nas variavéis de ambiente do windows.
 - Acesse as configurações de variáveis de ambiente
@@ -51,9 +50,9 @@
 - Link do Swagger http://localhost:8080/q/swagger-ui/
 - ![img.png](src/main/resources/readme/img-10.png)
 
-# Passos para executar o projeto utilizando IntelliJ IDEA no idioma inglês
+# Passos para executar o projeto em ambiente local utilizando IntelliJ IDEA no idioma inglês
 
-- Clonar o projeto **[worst-movie-api](https://github.com/wesleyeduardodev/worst-movie-api.git)** em algum diretório na máquina. (Para essa aplicação foi usado Windows como ambiente de desenvolvimento)
+- Clonar o projeto em algum diretório na máquina. (Para essa aplicação foi usado Windows como ambiente de desenvolvimento)
 - Baixar e instalar versão gratuita IntelliJ IDEA Ultimate por 30 dias. https://www.jetbrains.com/idea/download/?section=windows
 - Ao iniciar a IDE, selecionar a Opção File -> Open
 - ![img.png](src/main/resources/readme/img.png)
@@ -61,7 +60,7 @@
 - ![img_1.png](src/main/resources/readme/img_1.png)
 - Para configurar o Java selecione a opção File -> Project Structure
 - ![img_2.png](src/main/resources/readme/img_2.png)
-- Na aba project, opção SDK procure e selecione a SDK do Java 11 presente no diretório da sua máquina
+- Na aba project, opção SDK procure e selecione a SDK do Java 17 presente no diretório da sua máquina
 - ![img_3.png](src/main/resources/readme/img_3.png)
 - Para configurar o maven, selecione a opção File -> Settings
 - ![img_4.png](src/main/resources/readme/img_4.png)
