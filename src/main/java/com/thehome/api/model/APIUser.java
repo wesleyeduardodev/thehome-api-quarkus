@@ -3,7 +3,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,19 +18,18 @@ public class APIUser extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "api_user_id_seq")
     private Long id;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "role", nullable = false)
+    private String role;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "updated at")
     private LocalDateTime updatedAt;
-
-    @Transient
-    @OneToMany(mappedBy = "apiUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<APIUserRole> userRoles;
 }
