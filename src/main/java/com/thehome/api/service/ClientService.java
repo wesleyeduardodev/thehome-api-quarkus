@@ -23,7 +23,7 @@ public class ClientService implements DefaultCRUD<Client, ClientRequestDTO, Clie
     @Override
     public Client createEntityFromRequest(ClientRequestDTO clientRequestDTO) {
         Client client = toEntityFromRequest(clientRequestDTO);
-        client.setDateRegister(LocalDateTime.now());
+        client.setCreatedAt(LocalDateTime.now());
         return clientRepository.save(client);
     }
 

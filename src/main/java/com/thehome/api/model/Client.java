@@ -34,8 +34,11 @@ public class Client extends PanacheEntityBase {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "date_register")
-    private LocalDateTime dateRegister;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated at")
+    private LocalDateTime updatedAt;
 
     @Column(name = "birthday")
     private LocalDateTime birthday;

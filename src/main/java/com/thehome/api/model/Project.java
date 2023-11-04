@@ -36,8 +36,11 @@ public class Project extends PanacheEntityBase {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ProjectBudget> projectBudgets;
 
-    @Column(name = "date_register")
-    private LocalDateTime dateRegister;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated at")
+    private LocalDateTime updatedAt;
 
     @Transient
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
