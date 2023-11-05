@@ -27,18 +27,11 @@ public class ClientRequestDTO {
     private String name;
 
     @Schema(
-            description = "Client CPF",
+            description = "Client CPF/CNPJ",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String cpf;
-
-    @Schema(
-            description = "Client CNPJ",
-            implementation = String.class,
-            type = SchemaType.STRING
-    )
-    private String cnpj;
+    private String cpfCnpj;
 
     @Schema(
             description = "Client telephone",

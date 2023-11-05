@@ -22,11 +22,8 @@ public class Client extends PanacheEntityBase {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "cpf")
-    private String cpf;
-
-    @Column(name = "cnpj")
-    private String cnpj;
+    @Column(name = "cpf_cnpj")
+    private String cpfCnpj;
 
     @Column(name = "telephone")
     private String telephone;

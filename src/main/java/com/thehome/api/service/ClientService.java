@@ -36,8 +36,7 @@ public class ClientService implements DefaultCRUD<Client, ClientRequestDTO, Clie
     public void updateEntityFromRequest(Long id, ClientRequestDTO clientRequestDTO) {
         Client client = Client.findById(id);
         client.setName(clientRequestDTO.getName());
-        client.setCpf(clientRequestDTO.getCpf());
-        client.setCnpj(clientRequestDTO.getCnpj());
+        client.setCpfCnpj(clientRequestDTO.getCpfCnpj());
         client.setTelephone(clientRequestDTO.getTelephone());
         client.setEmail(clientRequestDTO.getEmail());
         clientRepository.save(client);
@@ -55,8 +54,7 @@ public class ClientService implements DefaultCRUD<Client, ClientRequestDTO, Clie
         return ClientResponseDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .cpf(entity.getCpf())
-                .cnpj(entity.getCnpj())
+                .cpfCnpj(entity.getCpfCnpj())
                 .telephone(entity.getTelephone())
                 .email(entity.getEmail())
                 .build();
@@ -67,8 +65,7 @@ public class ClientService implements DefaultCRUD<Client, ClientRequestDTO, Clie
         return Client
                 .builder()
                 .name(request.getName())
-                .cpf(request.getCpf())
-                .cnpj(request.getCnpj())
+                .cpfCnpj(request.getCpfCnpj())
                 .telephone(request.getTelephone())
                 .email(request.getEmail())
                 .build();

@@ -5,7 +5,6 @@ import com.thehome.api.model.APIUser;
 import com.thehome.api.service.ApiUserService;
 import com.thehome.api.utils.ResponseMapperUtils;
 import jakarta.annotation.security.DenyAll;
-import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.RestResponse;
@@ -16,13 +15,13 @@ public class ApiUserResource implements ApiUserResourceAPI {
     @Inject
     ApiUserService apiUserService;
 
-    @Override
     @DenyAll
+    @Override
     public Response findAll() {
         return Response.ok(apiUserService.toResponsesFromEntities(APIUser.list("order by id"))).build();
     }
 
-    @PermitAll
+    @DenyAll
     @Override
     public Response findByUserName(String userName) {
         Optional<APIUser> apiUser = APIUser.find("userName", userName).firstResultOptional();
