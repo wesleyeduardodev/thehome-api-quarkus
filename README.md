@@ -2,6 +2,9 @@
 
 # **Projeto em Desenvolvimento**
 
+# Design do Sistema (Fase inicial de validação conceitual)
+![TheHomeSystemDesign.png](src%2Fmain%2Fresources%2FsystemDesign%2FTheHomeSystemDesign.png)
+
 # LINKS GERAIS
 - Aplicação Quarkus: https://thehome-3a98079ba9ed.herokuapp.com/
 - Swagger: https://thehome-3a98079ba9ed.herokuapp.com/q/swagger-ui/
