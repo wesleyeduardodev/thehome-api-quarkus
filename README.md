@@ -16,6 +16,9 @@
 - Subir aplicação: ./mvnw compile quarkus:dev
 - Dev UI:  http://localhost:8080/q/dev-ui/extensions
 - Swagger: http://localhost:8080/q/swagger-ui/
+- Executar jar: java -jar target/quarkus-app/quarkus-run.jar
+- Conectar máquina EC2: ssh ec2-user@"ip_aqui"
+- Copiar jara para EC2: scp ./target/quarkus-app/quarkus-run.jar ec2-user@"ip_aqui":/home/ec2-user
 
 # Tecnologias necessárias para execução do projeto
 

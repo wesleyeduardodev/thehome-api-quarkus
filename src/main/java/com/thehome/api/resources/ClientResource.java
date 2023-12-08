@@ -10,8 +10,7 @@ import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.RestResponse;
 import java.util.Optional;
 
-//TODO Essa anotação poderia ficar na interface. Porém parece há um problema com herança de anotações no fluxo de execução SecurityIdentity (Avaliar)
-@RolesAllowed("crud")
+@RolesAllowed("admin")
 public class ClientResource implements ClientResourceAPI {
 
     @Inject
